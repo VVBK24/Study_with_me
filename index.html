@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube & Spotify Integration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <h1>Study With Buddy</h1>
+        <div class="menu">
+            <br><label for="youtubeUrl">YouTube URL:</label>
+            <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL" />
+            
+            <br><label for="spotifyUrl">Spotify Playlist URL:</label>
+            <input type="text" id="spotifyUrl" placeholder="Enter Spotify Playlist URL" />
+            
+            <button id="playButton">Play</button>
+            <a href="https://github.com/VVBK24"><button id="Button">About</button></a> 
+        </div>
+    </nav>
+
+    <div id="youtubePlayer"></div>
+    <div id="spotifyPlayer"></div>
+    <div id="clock">8:10:45</div>
+
+
+    <script>
+        // Calling showTime function at every second
+        setInterval(showTime, 1000);
+        // Defining showTime funcion
+        function showTime() {
+            // Getting current time and date
+            let time = new Date();
+            let hour = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+            am_pm = "AM";
+        
+            // Setting time for 12 Hrs format
+            if (hour >= 12) {
+                if (hour > 12) hour -= 12;
+                am_pm = "PM";
+            } else if (hour == 0) {
+                hr = 12;
+                am_pm = "AM";
+            }
+        
+            hour =
+                hour < 10 ? "0" + hour : hour;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec;
+        
+            let currentTime =
+                hour +
+                ":" +
+                min +
+                ":" +
+                sec +
+                am_pm;
+        
+            // Displaying the time
+            document.getElementById(
+                "clock"
+            ).innerHTML = currentTime;
+        }
+        showTime();
+
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        document.getElementById('playButton').addEventListener('click', function() {
+            const youtubeUrl = document.getElementById('youtubeUrl').value;
+            const videoIdMatch = youtubeUrl.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/);
+           
+            const videoId = videoIdMatch[1]; // Extract video ID from URL
+            const playerDiv = document.getElementById('youtubePlayer');
+            playerDiv.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            
+            // Hide input fields and title
+            document.querySelector('nav').style.display = 'none';
+        });
+
+        document.getElementById('playButton').addEventListener('click', function() {
+            const spotifyUrl = document.getElementById('spotifyUrl').value;
+            const playlistId = spotifyUrl.split('playlist/')[1]?.split('?')[0]; // Extract playlist ID from URL
+            if (playlistId) {
+                const playerDiv = document.getElementById('spotifyPlayer');
+                playerDiv.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/${playlistId}?autoplay=1" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
+            }
+        });
+    </script>
+</body>
+</html>

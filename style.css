@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove margin for full-screen effect */
+    overflow: hidden; /* Prevent scrolling */
+    background-color: #f4f4f4; /* Light background for contrast */
+    background-image: url('Smile.gif');
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background */
+    color: rgb(255, 255, 255);
+    padding: 35px;
+    position: fixed; /* Fixed position for sliding effect */
+    left: -250px; /* Hide off-screen */
+    width: 250px; /* Width of the nav */
+    height: 100%; /* Full height */
+    transition: left 0.3s cubic-bezier(1, 0.01, 0, 0.98); /* Smooth slide in */
+    z-index: 4; /* Ensure it is above other content */
+}
+
+nav.active {
+    left: 0; /* Slide in */
+}
+
+nav h1 {
+    display: inline;
+    font-size: 24px; /* Larger font for title */
+}
+
+nav .hamburger {
+    cursor: pointer;
+    float: right;
+    font-size: 24px; /* Larger icon */
+}
+
+nav .menu{
+    float: left;
+}
+input {
+    margin-top: 10px;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px; /* Padding for input fields */
+    border: 1px solid #ccc; /* Border for input fields */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#youtubePlayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Adjust width for the YouTube player */
+    height: 100%;
+    z-index: 1; /* Ensure it is behind the Spotify player */
+}
+
+#spotifyPlayer {
+    position: absolute;
+    top: 30%; /* Position it below the title */
+    right: -13%; /* Align to the right */
+    width: 30%; /* Adjust width for the Spotify player */
+    z-index: 2; /* Ensure it is above the YouTube player */
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px; /* Padding for buttons */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer cursor */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.gif-overlay {
+    position: absolute; /* Make it overlap other content */
+    top: 0;
+    left: 52%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 100%;
+    height: 100%; /* Full height of the white area */
+    z-index: 10; /* Ensure it appears above other elements */
+    background: none;
+  }
+.gif-overlay img{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+clock {
+    position: absolute;
+    top: 30%; /* Position it below the title */
+    right: -13%; /* Align to the right */
+    width: 30%; /* Adjust width for the Spotify player */
+    z-index: 2; /* Ensure it is above the YouTube player */
+}
+#clock {
+     position: absolute;
+     top: 10px; /* Adjust as needed */
+     right: 10px; /* Adjust as needed */
+     z-index: 3; /* Ensure it is above the YouTube player */
+     background-color: rgba(0, 0, 0, 0.2); 
+     color: white; /* Text color */
+     padding: 5px; /* Padding for aesthetics */
+     border-radius: 5px; /* Rounded corners */
+     font-size: 40px;
+}
